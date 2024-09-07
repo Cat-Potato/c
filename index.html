@@ -9,7 +9,7 @@
                 .then(response => {
                     if (response.ok) {
                         // Serwer działa, wykonaj przekierowanie
-                        window.location.href = 'http://localhost:5000';
+                        window.location.href = 'http://0.0.0.0:5000';
                     } else {
                         // Obsłuż błąd serwera
                         document.getElementById('message').textContent = 'Serwer jest niedostępny. Spróbuj później.';
