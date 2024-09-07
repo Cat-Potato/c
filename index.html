@@ -2,29 +2,26 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0;url=http://localhost:5000">
     <title>Przekierowanie</title>
-    <script>
-        function checkServer() {
-            fetch('http://localhost:5000', { method: 'HEAD' })
-                .then(response => {
-                    if (response.ok) {
-                        // Serwer działa, wykonaj przekierowanie
-                        window.location.href = 'http://localhost:5000';
-                    } else {
-                        // Obsłuż błąd serwera
-                        document.getElementById('message').textContent = 'Serwer jest niedostępny. Spróbuj później.';
-                    }
-                })
-                .catch(() => {
-                    // Obsłuż błąd połączenia
-                    document.getElementById('message').textContent = 'Serwer jest niedostępny. Spróbuj później.';
-                });
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+            background-color: #f0f0f0;
+            color: #333;
         }
-
-        window.onload = checkServer;
-    </script>
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <p id="message">Przekierowuję na <a href="http://localhost:5000">localhost:5000</a>. Jeśli przekierowanie się nie powiedzie, kliknij powyższy link.</p>
+    <p>Przekierowuję na <a href="http://localhost:5000">localhost:5000</a>.</p>
 </body>
 </html>
