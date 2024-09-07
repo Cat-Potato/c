@@ -2,19 +2,54 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=http://localhost:5000">
+    <meta http-equiv="refresh" content="5;url=http://localhost:5000">
     <title>Przekierowanie</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 20%;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: #282c34;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .loading {
+            font-size: 1.2em;
+            color: #61dafb;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+        .spinner {
+            margin: 20px auto;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #61dafb;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
         a {
-            color: #007bff;
+            color: #61dafb;
             text-decoration: none;
+            font-weight: bold;
         }
         a:hover {
             text-decoration: underline;
@@ -22,6 +57,7 @@
     </style>
 </head>
 <body>
-    <p>Przekierowuję na <a href="http://localhost:5000">localhost:5000</a>.</p>
+    <div class="spinner"></div>
+    <p class="loading">Przekierowuję na <a href="http://localhost:5000">localhost:5000</a>. Jeśli przekierowanie się nie powiedzie, kliknij powyższy link.</p>
 </body>
 </html>
