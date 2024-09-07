@@ -5,31 +5,20 @@
     <title>Przekierowanie</title>
     <script>
         function checkServer() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://localhost:5000', true);
-            xhr.timeout = 5000; // 5 sekund
-
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    // Serwer działa, wykonaj przekierowanie
-                    window.location.href = 'http://localhost:5000';
-                } else {
-                    // Obsłuż błąd serwera
+            fetch('http://localhost:5000', { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        // Serwer działa, wykonaj przekierowanie
+                        window.location.href = 'http://localhost:5000';
+                    } else {
+                        // Obsłuż błąd serwera
+                        document.getElementById('message').textContent = 'Serwer jest niedostępny. Spróbuj później.';
+                    }
+                })
+                .catch(() => {
+                    // Obsłuż błąd połączenia
                     document.getElementById('message').textContent = 'Serwer jest niedostępny. Spróbuj później.';
-                }
-            };
-
-            xhr.onerror = function () {
-                // Obsłuż błąd połączenia
-                document.getElementById('message').textContent = 'Serwer jest niedostępny. Spróbuj później.';
-            };
-
-            xhr.ontimeout = function () {
-                // Obsłuż timeout
-                document.getElementById('message').textContent = 'Czas oczekiwania na odpowiedź serwera minął.';
-            };
-
-            xhr.send();
+                });
         }
 
         window.onload = checkServer;
